@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./xG.css" type="text/css" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>xG Model Webapp</title>
+  </head>
+    <body class="text-center">
+      <!-- Divide the webpage -->
+      <div class="flex flex-col">
+        <div class="text-black py-4 px-6 text-center mx-auto">
+          <h1 class="text-4xl font-bold mb-8 mx-auto">
+            Creating an Expected Goals Model from Singapore Premier League Data
+          </h1>
+        </div>
+        <div class="flex-1 items-center justify-center flex flex-col">
+          <div class="h-64 flex justify-center items-center">
+            <svg id="pitch" class="svg-aside">
+              <defs>
+                <clipPath id="clip-path">
+                  <rect x="5" y="5" width="380" height="280" />
+                </clipPath>
+              </defs>
+              <rect
+                class="pitch-svg"
+                width="380"
+                height="280"
+                x="5"
+                y="5"
+              ></rect>
+              <!-- Penalty area -->
+              <circle class="pitch-svg" cx="190" cy="79.4" r="50"></circle>
+              <rect
+                class="pitch-svg"
+                width="219"
+                height="95"
+                x="85"
+                y="5"
+              ></rect>
+              <rect
+                class="pitch-svg"
+                width="100"
+                height="32.5"
+                x="140"
+                y="5"
+              ></rect>
+              <path
+                class="pitch-svg"
+                d="M 140,285
+                               A 50,50 0 0 1 240,285
+                               Q 190,365 140,285
+                               Z"
+                style="fill-opacity: 0"
+                clip-path="url(#clip-path)"
+              ></path>
+              <rect
+                class="pitch-svg"
+                width="45"
+                height="5"
+                x="167.5"
+                y="0"
+                style="fill: lightgray; fill-opacity: 0.5"
+              ></rect>
+              <line
+                class="dribble-line"
+                x1="190"
+                y1="320"
+                x2="190"
+                y2="320"
+                marker-end="url(#dribbleTriangle)"
+              ></line>
+              <circle class="shot-circle" cx="190" cy="155" r="5"></circle>
+              <text class="xG-text" x="10" y="278">Expected Goal Value</text>
+            </svg>
+          </div>
+          <div
+            class="w-full md:w-1/2 bg-white-500 text-black py-4 px-6 flex-1 justify-center mx-auto"
+          >
+            <div class="text-center justify-center">
+              <p class="mb-3 text-black-500 dark:text-black-400">
+                Using Logistic Regression, we have created an Expected Goals
+                Model that takes into account the:
+              </p>
+              <ol
+                class="text-gray-500 list-decimal list-inside dark:text-black-400"
+              >
+                <li>
+                  <span class="text-gray-900 dark:text-black"
+                    >X Coordinate of A Shot</span
+                  >
+                </li>
+                <li>
+                  <span class="text-gray-900 dark:text-black"
+                    >Y Coordinate of A Shot</span
+                  >
+                </li>
+                <li>
+                  <span class="text-gray-900 dark:text-black"
+                    >Distance from the Center of the Goal</span
+                  >
+                </li>
+                <li>
+                  <span class="text-gray-900 dark:text-black"
+                    >Angle from the Center of the Goal</span
+                  >
+                </li>
+              </ol>
+              <br />
+              <p class="mb-3 text-black-500 dark:text-black-400">
+                Move the Ball on the Pitch Above to Try it Out!
+              </p>
+              <p class="mb-3 text-black-500 dark:text-black-400">
+                The JavaScript Boilerplate for the responsive pitch was taken from <a href="https://torvaney.github.io/projects/xG.html" class="text-blue-500 hover:text-blue-700 visited:text-blue-700">Ben Torvaney's Github Page.</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- information text -->
+      </div>
+    </body>
+
+    <script type="text/javascript">
+      (function () {
+        var pitchSVG = d3.select("#pitch");
+        console.log(pitchSVG);
+        function calculateDistance(pos_x, pos_y) {
+          /*
+           * Function to find the distance in metres between the shot location and the center point of the goal line.
+           */
+          const midGoalX = 0.0;
+          const midGoalY = 34.0;
+          const goalCoordinates = [midGoalX, midGoalY];
+          const shotCoordinates = [pos_x, pos_y];
+          const distance = Math.hypot(
+            shotCoordinates[0] - goalCoordinates[0],
+            shotCoordinates[1] - goalCoordinates[1]
+          );
+          return distance;
+        }
+
+        function calculateAngle(pos_x, pos_y) {
+          /*
+           * Function to calculate the angle in degrees between the shot location and the center point of the goal line.
+           */
+          const deltaY = Math.pow(pos_y - 34.0, 2);
+          const deltaX = Math.pow(pos_x - 0.0, 2);
+          const radian = Math.atan2(deltaY, deltaX);
+          console.log("RADIANS");
+          console.log(radian);
+          const degrees = radian * (180 / Math.PI);
+          return degrees;
+        }
+
+        function distanceAnglexG(pos_x, pos_y) {
+          console.log("POS X AND POS Y");
+          console.log(pos_x, pos_y);
+          const pitchY = 68 - (Math.abs(380 - pos_x) * 68) / 380;
+          const pitchX = (Math.abs(pos_y - 5) * 52.5) / 280;
+          console.log("PITCH X AND Y");
+          console.log(pitchX, pitchY);
+          let distance = calculateDistance(pitchX, pitchY);
+          let angle = calculateAngle(pitchX, pitchY);
+          console.log("DISTANCE AND ANGLE");
+          console.log(distance, angle);
+          let p =
+            1 /
+            (1 +
+              Math.exp(
+                -(
+                  0.2204 -
+                  0.0281 * pos_x -
+                  0.0062 * pos_y -
+                  0.0998 * distance -
+                  0.0081 * angle
+                )
+              ));
+          console.log("RAW VALUE");
+          console.log(p);
+          p = p * 100;
+          p = p.toFixed(2);
+          console.log(p);
+          return p;
+        }
+
+        function moveCircle(x, y, svg) {
+          console.log(svg);
+          // Move circle
+          svg.select(".shot-circle").transition().attr("cx", x).attr("cy", y);
+        }
+
+        function printXG(xG, svg) {
+          svg.select(".xG-text").text("xG: " + xG);
+        }
+
+        pitchSVG.on("click", function () {
+          //console.log("THERES A CLICK");
+          // update position
+          var coords = d3.mouse(this);
+          console.log(coords);
+          (x = coords[0]), (y = coords[1]), (xG = distanceAnglexG(x, y));
+          console.log("X AND Y");
+          console.log(x, y);
+          printXG(xG, pitchSVG);
+          moveCircle(x, y, pitchSVG);
+        });
+
+        d3.selectAll(".param-select").on("change", function () {
+          // update position
+          var x = +d3.select(".shot-circle").attr("cx"),
+            y = +d3.select(".shot-circle").attr("cy"),
+            xG = distanceAnglexG(x, y);
+          printXG(xG, pitchSVG);
+          moveCircle(x, y, pitchSVG);
+        });
+      })();
+    </script>
+  </body>
+</html>
