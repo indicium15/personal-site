@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./xG.css" type="text/css" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="xG.css">
     <title>Expected Goals - SPL</title>
   </head>
-    <body class>
+    <body>
       <!-- Divide the webpage -->
       <div class="flex flex-col">
         <div class="flex-1 flex flex-col items-center justify-center text-center text-black py-4 px-6 mx-auto">
@@ -72,7 +72,7 @@
                 marker-end="url(#dribbleTriangle)"
               ></line>
               <circle class="shot-circle" cx="190" cy="155" r="5"></circle>
-              <text class="xG-text" x="10" y="278">Expected Goal Value</text>
+              <text class="xG-text white-text" x="10" y="278" style="color: white !important;">Expected Goal Value</text>
             </svg>
           </div>
           <div
@@ -109,7 +109,7 @@
               </ol>
               <br />
               <p class="mb-3 text-black-500 dark:text-black-400">
-                Move the Ball on the Pitch Above to Try it Out!
+                <b>Move the Ball on the Pitch Above to Try it Out!</b>
               </p>
               <p class="mb-3 text-black-500 dark:text-black-400">
                 The JavaScript Boilerplate for the responsive pitch was taken from <a href="https://torvaney.github.io/projects/xG.html" class="text-blue-500 hover:text-blue-700 visited:text-blue-700">Ben Torvaney's Github Page.</a>
