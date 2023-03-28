@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="./xG.css" type="text/css" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>xG Model Webapp</title>
+    <title>Expected Goals - SPL</title>
   </head>
-    <body class="text-center">
+    <body class>
       <!-- Divide the webpage -->
       <div class="flex flex-col">
-        <div class="text-black py-4 px-6 text-center mx-auto">
-          <h1 class="text-4xl font-bold mb-8 mx-auto">
+        <div class="flex-1 flex flex-col items-center justify-center text-center text-black py-4 px-6 mx-auto">
+          <h1 class="text-4xl font-bold mb-2 ml-2 mx-auto">
             Creating an Expected Goals Model from Singapore Premier League Data
           </h1>
         </div>
@@ -76,11 +76,11 @@
             </svg>
           </div>
           <div
-            class="w-full md:w-1/2 bg-white-500 text-black py-4 px-6 flex-1 justify-center mx-auto"
+            class="w-full md:w-1/2 bg-white-500 text-black py-4 px-6 flex flex-1 justify-center mx-auto"
           >
             <div class="text-center justify-center">
               <p class="mb-3 text-black-500 dark:text-black-400">
-                Using Logistic Regression, we have created an Expected Goals
+                Using <b>Logistic Regression</b>, we have created an Expected Goals
                 Model that takes into account the:
               </p>
               <ol
@@ -124,7 +124,7 @@
     <script type="text/javascript">
       (function () {
         var pitchSVG = d3.select("#pitch");
-        console.log(pitchSVG);
+        // console.log(pitchSVG);
         function calculateDistance(pos_x, pos_y) {
           /*
            * Function to find the distance in metres between the shot location and the center point of the goal line.
@@ -147,39 +147,40 @@
           const deltaY = Math.pow(pos_y - 34.0, 2);
           const deltaX = Math.pow(pos_x - 0.0, 2);
           const radian = Math.atan2(deltaY, deltaX);
-          console.log("RADIANS");
-          console.log(radian);
+          // console.log("RADIANS");
+          // console.log(radian);
           const degrees = radian * (180 / Math.PI);
           return degrees;
         }
 
         function distanceAnglexG(pos_x, pos_y) {
-          console.log("POS X AND POS Y");
-          console.log(pos_x, pos_y);
+          // console.log("POS X AND POS Y");
+          // console.log(pos_x, pos_y);
           const pitchY = 68 - (Math.abs(380 - pos_x) * 68) / 380;
           const pitchX = (Math.abs(pos_y - 5) * 52.5) / 280;
-          console.log("PITCH X AND Y");
-          console.log(pitchX, pitchY);
+          // console.log("PITCH X AND Y");
+          // console.log(pitchX, pitchY);
           let distance = calculateDistance(pitchX, pitchY);
           let angle = calculateAngle(pitchX, pitchY);
-          console.log("DISTANCE AND ANGLE");
-          console.log(distance, angle);
+          // console.log("DISTANCE AND ANGLE");
+          // console.log(distance, angle);
           let p =
             1 /
             (1 +
               Math.exp(
                 -(
-                  0.2204 -
-                  0.0281 * pos_x -
-                  0.0062 * pos_y -
-                  0.0998 * distance -
-                  0.0081 * angle
+                  0.2204 
+                  -0.0281 * pitchX
+                  -0.0062 * pitchY
+                  -0.0998 * distance 
+                  -0.0081 * angle
                 )
               ));
-          console.log("RAW VALUE");
-          console.log(p);
+          // console.log("RAW VALUE");
+          // console.log(p);
+          p = p*100;
           p = p.toFixed(2);
-          console.log(p);
+          // console.log(p);
           return p;
         }
 
@@ -190,17 +191,17 @@
         }
 
         function printXG(xG, svg) {
-          svg.select(".xG-text").text("xG: " + xG);
+          svg.select(".xG-text").text("xG: " + xG + "%");
         }
 
         pitchSVG.on("click", function () {
           //console.log("THERES A CLICK");
           // update position
           var coords = d3.mouse(this);
-          console.log(coords);
+          // console.log(coords);
           (x = coords[0]), (y = coords[1]), (xG = distanceAnglexG(x, y));
-          console.log("X AND Y");
-          console.log(x, y);
+          // console.log("X AND Y");
+          // console.log(x, y);
           printXG(xG, pitchSVG);
           moveCircle(x, y, pitchSVG);
         });
