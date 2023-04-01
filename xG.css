@@ -40,7 +40,7 @@
     font-family: sans-serif;
     font-style: normal;
     font-weight: 120;
-    color: white !important; 
+    fill: white;
   }
   pre{
     font-family:sans-serif;
