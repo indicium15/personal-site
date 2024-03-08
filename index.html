@@ -1,162 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" class="relative h-full antialiased dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.png" />
-    
-		<link href="./_app/immutable/assets/0.f5b4794e.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/PostsList.988031de.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.6658b85a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.40ef7fde.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.681644e1.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.21f8c5ff.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.a4192956.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.8966c62e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/info.0a4752c1.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.a18db361.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.8ab40295.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/PostsList.66bfe56e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/PostDate.3a31d714.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/SocialLinks.6098ec75.js"><title>Jordan Doe</title><!-- HEAD_svelte-1cbbdsg_START --><meta name="description" content="I’m Jordan, a software engineer based in Canada. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus accumsan quam at eros malesuada, id luctus lectus efficitur. Nulla
-sit amet arcu mi. Duis quis mauris malesuada, posuere orci et, pulvinar nisl. Nam malesuada
-vehicula sapien vitae sagittis.
-"><!-- HEAD_svelte-1cbbdsg_END -->
-    <script>
-      let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+---
+layout: default
+title: Home
+---
 
-      updateMode()
-      darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
-      window.addEventListener('storage', updateModeWithoutTransitions)
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
 
-      function updateMode() {
-        let isSystemDarkMode = darkModeMediaQuery.matches
-        let isDarkMode =
-          window.localStorage.isDarkMode === 'true' ||
-          (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
+    <span class="post-date">{{ post.date | date_to_string }}</span>
 
-        if (isDarkMode) {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
-        }
-
-        if (isDarkMode === isSystemDarkMode) {
-          delete window.localStorage.isDarkMode
-        }
-      }
-
-      function disableTransitionsTemporarily() {
-        document.documentElement.classList.add('[&_*]:!transition-none')
-        window.setTimeout(() => {
-          document.documentElement.classList.remove('[&_*]:!transition-none')
-        }, 0)
-      }
-
-      function updateModeWithoutTransitions() {
-        disableTransitionsTemporarily()
-        updateMode()
-      }
-    </script>
-  </head>
-
-  <body class="h-full bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
-    <div>
-
-
-
-<div class="flex flex-col min-h-screen "><div class="flex flex-col flex-grow w-full px-4 py-2"><header class="flex items-center justify-between w-full max-w-2xl py-4 mx-auto lg:pb-8"><a class="text-lg font-bold sm:text-2xl !text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600 dark:to-teal-400" href="/">Jordan Doe</a>
-
-      <button type="button" role="switch" aria-label="Toggle Dark Mode" aria-checked="true" class="w-5 h-5 sm:h-8 sm:w-8 sm:p-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="hidden text-zinc-500 dark:block"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="block text-zinc-400 dark:hidden"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg></button></header>
-    <main class="flex flex-col flex-grow w-full mx-auto max-w-2xl">
-
-<div class="flex flex-col flex-grow gap-8 pb-16">
-  <section class="flex flex-col items-center gap-16 pt-8 pb-16"><div class="flex flex-col items-center w-full gap-6 rounded-lg"><img src="https://picsum.photos/id/203/250/250" alt="Jordan Doe" class="mx-auto rounded-full w-36 h-36 ring-2 ring-zinc-200 dark:ring-zinc-700">
-      <div class="flex gap-6">
-
-
-
-<a href="https://github.com/mattjennings/sveltekit-blog-template" class="group" aria-label="Follow on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" class="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"><path fillrule="evenodd" cliprule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path></svg></a>
-
+    {{ post.content }}
+  </div>
+  {% endfor %}
 </div>
-      <p class="text-base text-zinc-600 dark:text-zinc-400">I’m Jordan, a software engineer based in Canada. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus accumsan quam at eros malesuada, id luctus lectus efficitur. Nulla
-sit amet arcu mi. Duis quis mauris malesuada, posuere orci et, pulvinar nisl. Nam malesuada
-vehicula sapien vitae sagittis.
-</p></div></section>
-  <section class="w-full"><div class="flex items-center justify-between gap-4 mb-8"><h2 class="text-sm font-medium sm:text-base text-zinc-500 dark:text-zinc-400">Recently Published
-      </h2>
-      <a href="/posts" class="flex items-center gap-1 text-sm font-medium text-teal-500">View All <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></a></div>
-    <div class="flex flex-col gap-16 md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"><article class="grid items-start grid-cols-4 gap-8"><div class="relative z-10 order-first mb-3 flex text-zinc-500 dark:text-zinc-400 flex-col hidden md:flex text-sm">
-  <div class="flex flex-col"><time datetime="2022-12-14">December 14, 2022</time>
-    
-    <span>4 min read</span></div></div>
 
-      <div class="col-span-4 md:col-span-3"><div class="relative flex flex-col items-start group ">
-            <div class="relative z-10 order-first mb-3 flex text-zinc-500 dark:text-zinc-400 md:hidden pl-3.5"><span class="absolute inset-y-0 left-0 flex items-center py-1" aria-hidden="true"><span class="h-full w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span></span>
-  <div class="flex"><time datetime="2022-12-14">December 14, 2022</time>
-    <span class="mx-1">•</span>
-    <span>4 min read</span></div></div>
-          
-
-  <div class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100"><div class="absolute z-0 transition scale-95 opacity-0 -inset-y-6 -inset-x-4 bg-zinc-50 group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-        <a href="/post/getting-started" data-sveltekit-prefetch><span class="absolute z-20 -inset-y-6 -inset-x-4 sm:-inset-x-6 sm:rounded-2xl"></span>
-          <span class="relative z-10">Getting Started</span></a></div>
-
-  <div class="relative z-10 flex-1 text-sm text-zinc-600 dark:text-zinc-400 mt-2"><div slot="description" class="prose dark:prose-invert svelte-1c2379o"><!-- HTML_TAG_START --><p>Thanks for checking out my blog template. It’s based on the blog I built for my own <a href="https://mattjennings.io" rel="nofollow">website</a> and I hope this is a good starting point for you to start yours.</p><!-- HTML_TAG_END --></div></div>
-
-  <div aria-hidden="true" class="relative z-10 flex items-center mt-4"><div slot="actions"><div class="flex items-center text-teal-500"><span class="text-sm font-medium">Read</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></div></div></div></div></div>
-    </article><article class="grid items-start grid-cols-4 gap-8"><div class="relative z-10 order-first mb-3 flex text-zinc-500 dark:text-zinc-400 flex-col hidden md:flex text-sm">
-  <div class="flex flex-col"><time datetime="2022-01-02">January 2, 2022</time>
-    
-    <span>3 min read</span></div></div>
-
-      <div class="col-span-4 md:col-span-3"><div class="relative flex flex-col items-start group ">
-            <div class="relative z-10 order-first mb-3 flex text-zinc-500 dark:text-zinc-400 md:hidden pl-3.5"><span class="absolute inset-y-0 left-0 flex items-center py-1" aria-hidden="true"><span class="h-full w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span></span>
-  <div class="flex"><time datetime="2022-01-02">January 2, 2022</time>
-    <span class="mx-1">•</span>
-    <span>3 min read</span></div></div>
-          
-
-  <div class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100"><div class="absolute z-0 transition scale-95 opacity-0 -inset-y-6 -inset-x-4 bg-zinc-50 group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-        <a href="/post/lorem-ipsum" data-sveltekit-prefetch><span class="absolute z-20 -inset-y-6 -inset-x-4 sm:-inset-x-6 sm:rounded-2xl"></span>
-          <span class="relative z-10">Lorem Ipsum</span></a></div>
-
-  <div class="relative z-10 flex-1 text-sm text-zinc-600 dark:text-zinc-400 mt-2"><div slot="description" class="prose dark:prose-invert svelte-1c2379o"><!-- HTML_TAG_START --><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed lectus. Nisi est sit amet facilisis magna etiam tempor orci. Dolor sed viverra ipsum nunc aliquet.</p><!-- HTML_TAG_END --></div></div>
-
-  <div aria-hidden="true" class="relative z-10 flex items-center mt-4"><div slot="actions"><div class="flex items-center text-teal-500"><span class="text-sm font-medium">Read</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></div></div></div></div></div>
-    </article></div></section></div></main></div></div>
-
-
-			
-			<script>
-				{
-					__sveltekit_1eymgrb = {
-						base: new URL(".", location).pathname.slice(0, -1),
-						env: {}
-					};
-
-					const element = document.currentScript.parentElement;
-
-					const data = [null,{"type":"data","data":(function(a,b,c,d){a[0]={depth:2,value:"Creating a Post",id:"creating-a-post"};a[1]={depth:2,value:"Rendering Posts",id:"rendering-posts"};a[2]={depth:2,value:"Getting Posts",id:"getting-posts"};a[3]={depth:2,value:"Theme",id:"theme"};a[4]={depth:2,value:"Mdsvex Plugins",id:"mdsvex-plugins"};a[5]={depth:3,value:"Videos",id:"videos"};a[6]={depth:3,value:"Relative URLs for Images and Videos",id:"relative-urls-for-images-and-videos"};a[7]={depth:2,value:"Deploying",id:"deploying"};a[8]={depth:2,value:"That’s it!",id:"thats-it"};b.html="\u003Cp>Thanks for checking out my blog template. It’s based on the blog I built for my own \u003Ca href=\"https://mattjennings.io\" rel=\"nofollow\">website\u003C/a> and I hope this is a good starting point for you to start yours.\u003C/p>";b.text="Thanks for checking out my blog template. It’s based on the blog I built for my own website and I hope this is a good starting point for you to start yours.";d.html="\u003Cp>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed lectus. Nisi est sit amet facilisis magna etiam tempor orci. Dolor sed viverra ipsum nunc aliquet.\u003C/p>";d.text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed lectus. Nisi est sit amet facilisis magna etiam tempor orci. Dolor sed viverra ipsum nunc aliquet.";return {posts:[{title:"Getting Started",date:"2022-12-14",headings:a,slug:"getting-started",isIndexFile:true,preview:b,readingTime:"4 min read",next:void 0,previous:{title:"Lorem Ipsum",date:"2022-01-02",headings:c,slug:"lorem-ipsum",isIndexFile:false,preview:d,readingTime:"3 min read"}},{title:"Lorem Ipsum",date:"2022-01-02",headings:c,slug:"lorem-ipsum",isIndexFile:false,preview:d,readingTime:"3 min read",next:{title:"Getting Started",date:"2022-12-14",headings:a,slug:"getting-started",isIndexFile:true,preview:b,readingTime:"4 min read"},previous:void 0}]}}(Array(9),{},Array(0),{})),"uses":{}}];
-
-					Promise.all([
-						import("./_app/immutable/entry/start.6658b85a.js"),
-						import("./_app/immutable/entry/app.21f8c5ff.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data,
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-  </body>
-</html>
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>
