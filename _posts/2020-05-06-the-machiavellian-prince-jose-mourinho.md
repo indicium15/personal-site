@@ -3,8 +3,10 @@ layout: post
 title:  "The Machiavellian Prince - Jose Mourinho"
 date:   2020-05-06 
 categories: FOOTBALL
-tags: football-writing
+tags: football
 ---
+
+<p class="full-width"><img src="https://talksport.com/wp-content/uploads/sites/5/2018/11/UnitedMourinho3.jpg" alt="Mourinho" align="center"/></p>
 
 Jose Mourinho became a prominent figure in the footballing world in the early 2000’s at FC Porto. In his first season, he won his first Premier Liga title with a then-record number of points. He found further success in his next season, winning the Portugese Super Cup, Primeria Liga and his first Champions League title with a win over Monaco in 2004.
 
@@ -18,7 +20,7 @@ He set this precedent in his very first press conference at Chelsea, with this f
 
 Mourinho’s success is a result of his own volition. He committed himself to coaching at an early age due to his lack of a physical skill set to progress to the next level as a player. He moved up the ranks of Portugese football due to his drive and attention to detail. Eventually, he broke through as a translator for Bobby Robson at Sporting CP, subsequently following him to Porto and Barcelona as an assistant manager.
 
-    When I was twenty, I was nobody in football. I was somebody’s son. You know? And now, with fifty-five, I am what I am, I did what I did, because of work. Because of my talent, and because of my mentality.
+> When I was twenty, I was nobody in football. I was somebody’s son. You know? And now, with fifty-five, I am what I am, I did what I did, because of work. Because of my talent, and because of my mentality.
 
 When he got the opportunity to become a manager at Benfica, he employed a unique managerial style that he had been developing for years – combining his tactical astuteness with psychological motivation to transform his players into born winners. Instead of being a footballing aesthete, he preferred to be pragmatic. For him, playing reactive football and tailoring your team to the opponent’s weakness was the best way to win games. He often challenged his players publicly and privately if their performances were not up to his standard. 
 
@@ -30,7 +32,8 @@ The portrait of Mourinho – his love of winning, charisma and shrewd nature mad
 
 One can draw parallels between Mourinho and Machiavelli’s rejection of conventional wisdom. They both see themselves as pragmatists in a world of idealists.
 
-    There are lots of poets in football, but poets, they don’t win titles.
+> There are lots of poets in football, but poets, they don’t win titles.
+
 
 Machiavelli was also a proponent of the belief that coercion creates legality – to keep yourself in the throne, it is better to rule with fear rather than affection. When Mourinho confronts his players, or challenges them to prove him wrong, he sees it as an unorthodox form of motivation. His previous feuds have also shown that he does not feel the need to be on good terms with his players. Rather, it is his responsibility to get the best out of them, even if it requires unconventional methods. 
 
@@ -40,9 +43,9 @@ Mourinho would agree with Machiavelli’s principle of virtù, which is explaine
 
 Are Mourinho and Machiavelli similar? Yes. He’s agreed with this himself, but he states that he is not completely Machiavellian. For there are two Mourinho’s – while one is antagonistic and at times insufferable, the Mourinho in private has an extraordinary capacity for hard work and loyalty. It is important to keep this distinction in mind.
 
-## Sources:
-- https://bleacherreport.com/articles/2022751-zlatan-ibrahimovic-and-5-other-players-who-love-jose-mourinho
-- https://www.goal.com/en-sg/news/mourinho-lots-of-poets-in-football-but-poets-dont-win-titles/1csgj1h77nzul1gxpu26ywcg9n
-- https://www.goal.com/en-sg/news/mourinho-lots-of-poets-in-football-but-poets-dont-win-titles/1csgj1h77nzul1gxpu26ywcg9n
-- https://web.archive.org/web/20070331113408/http://www.newstatesman.com/200512190026
+## Sources
+- <a>https://bleacherreport.com/articles/2022751-zlatan-ibrahimovic-and-5-other-players-who-love-jose-mourinho</a>
+- <a>https://www.goal.com/en-sg/news/mourinho-lots-of-poets-in-football-but-poets-dont-win-titles/1csgj1h77nzul1gxpu26ywcg9n</a>
+- <a>https://www.goal.com/en-sg/news/mourinho-lots-of-poets-in-football-but-poets-dont-win-titles/1csgj1h77nzul1gxpu26ywcg9n</a>
+- <a>https://web.archive.org/web/20070331113408/http://www.newstatesman.com/200512190026</a>
 

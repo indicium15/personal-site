@@ -1,26 +1,27 @@
 # Dependencies
-markdown:         kramdown
-highlighter:      rouge
+markdown: kramdown
+highlighter: rouge
 
 # Permalinks
-permalink:        pretty
+permalink: pretty
 
 # Setup
-title:            Chaitanya
-tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:              http://hyde.getpoole.com
-baseurl:          /
+title: Chaitanya Jadhav
+tagline: "A Jekyll theme"
+description: "Notes about art, football, tech and life"
+url: indicium15.github.io
+baseurl: /
+emailme: chaitanya.jadhav15@hotmail.com
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name: "Chaitanya Jadhav"
 
-plugins:          [jekyll-paginate]
-paginate:         5
+plugins: [jekyll-paginate]
+paginate: 5
 
 # Custom vars
-version:          2.1.0
+version: 2.1.0
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo: https://github.com/indicium15/indicium15.github.io
+
