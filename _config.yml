@@ -16,9 +16,6 @@ emailme: chaitanya.jadhav15@hotmail.com
 author:
   name: "Chaitanya Jadhav"
 
-plugins: [jekyll-paginate]
-paginate: 5
-
 # Custom vars
 version: 2.1.0
 
