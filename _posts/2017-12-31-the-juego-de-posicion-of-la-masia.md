@@ -4,6 +4,7 @@ title:  "The Juege De Posicion of La Masia"
 date:   2017-12-31 
 categories: FOOTBALL
 tags: football
+comments: true
 ---
 
 Inspired by Ajax and imbibed with a certain Catalan flavour, the La Masia academy has been a reliable output for FC Barcelona, and over the course of time, has almost become synonymous with it — consistently churning out world-class players such as the likes of Xavi, Iniesta, Busquets, Pique, Puyol, Messi, and many others. The list goes on and on, and Cules always praised their self sufficiency and uncompromising philosophies, citing them as reasons that set them apart from other clubs, which have indeed painted Barca in a brilliant light.

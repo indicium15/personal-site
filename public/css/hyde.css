@@ -79,8 +79,8 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Average", serif;
-  font-size: 3.25rem;
+  font-family: "Average", sans-serif;
+  font-size: 2.5rem;
 }
 
 @media (max-width: 48em) {

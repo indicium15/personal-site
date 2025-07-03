@@ -4,6 +4,7 @@ title:  "Stromae, Jacques Brel, and a Bridge Between Two Generations"
 date:   2018-08-31 
 categories: ART
 tags: art
+comments: true
 ---
 
 <p class="full-width no-margin"><img src="https://cdn.britannica.com/94/198894-050-849E6CA3/Jacques-Brel-1963.jpg" alt="A still of Stromae from the music video Tous les Memes" align="center"/></p>

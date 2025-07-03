@@ -11,7 +11,7 @@ title: Home
         {{ post.title }}
       </a>
     </h1>
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+    <span class="post-date">{{ post.date | date_to_string }} - {% include read-time.html content = post.content %}</span>
     <span class="post-tags">
       [&nbsp;
       {% for tag in post.tags %}

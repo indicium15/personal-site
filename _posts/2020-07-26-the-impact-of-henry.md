@@ -4,6 +4,7 @@ title:  "The Impact of Thierry Henry"
 date:   2020-07-26 
 categories: FOOTBALL
 tags: football
+comments: true
 ---
 
 <p class="full-width"><img src="{{'/'|relative_url}}assets/henry/0.png" alt="Thierry Henry" align="center"/></p>

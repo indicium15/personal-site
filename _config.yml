@@ -7,11 +7,14 @@ permalink: pretty
 
 # Setup
 title: Chaitanya Jadhav
-tagline: "A Jekyll theme"
-description: "Notes about art, football, tech and life"
-url: indicium15.github.io
+tagline: ""
+description: ""
+url: chaitanyajadhav.com
 baseurl: /
 emailme: chaitanya.jadhav15@hotmail.com
+#TODO - get this working someday
+# # github_username: "indicium15"
+# linkedin_username: "chaitanya-jadhav-134392191"
 
 author:
   name: "Chaitanya Jadhav"
@@ -22,6 +25,5 @@ paginate: 5
 # Custom vars
 version: 2.1.0
 
-github:
-  repo: https://github.com/indicium15/indicium15.github.io
-
+disqus:
+  shortname: chaitanyajadhav-com-1

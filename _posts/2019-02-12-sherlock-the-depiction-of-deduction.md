@@ -4,6 +4,7 @@ title:  "Sherlock – The Depiction of Deduction"
 date:   2019-02-12 
 categories: ART
 tags: art
+comments: true
 ---
 
 <p class="full-width no-margin"><img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/06/Sherlocks-mind-palace-Benedict-Cumberbatch.jpg" alt="Sherlock Holmes (Benedict Cumberbatch)" align="center"/></p>

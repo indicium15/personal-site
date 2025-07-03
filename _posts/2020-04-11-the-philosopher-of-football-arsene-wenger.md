@@ -4,6 +4,7 @@ title:  "The Philosopher of Football - Arsene Wenger"
 date:   2020-04-11 
 categories: FOOTBALL
 tags: football
+comments: true
 ---
 
 For a sport with a premise as simple as putting a ball into a net, football has played an important role in shaping society. What occurs on the field often leaves an impression on areas far away from the stadium – science, maths, and even politics have found themselves impacted by the beautiful game. Even though only twenty-two people take the field at a time, there is an infinite number of ways in which in the game can be played – over the years, this has resulted in the creation of various styles – or “schools of thought” – of football. A manager’s “philosophy” is a common blanket term often used when talking about their preferred playing style, or the qualities of players they favour. In other words, how they believe the game should be played, or what they feel gives them the greatest chance of winning. 

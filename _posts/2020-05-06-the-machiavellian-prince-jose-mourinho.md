@@ -4,6 +4,7 @@ title:  "The Machiavellian Prince - Jose Mourinho"
 date:   2020-05-06 
 categories: FOOTBALL
 tags: football
+comments: true
 ---
 
 <p class="full-width"><img src="https://talksport.com/wp-content/uploads/sites/5/2018/11/UnitedMourinho3.jpg" alt="Mourinho" align="center"/></p>
