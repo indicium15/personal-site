@@ -11,10 +11,12 @@ Data has never been more accessible in sports analytics. Companies like [Hudl St
 
 When push comes to shove and data needs to be collected manually, open source data collection tools can make a cumbersome process much easier. After completing my [undergraduate research work in football analytics](https://chaitanyajadhav.com/publication/2023/05/31/ureca-2022/), I worked with Assoc. Prof John Komar to create web applications that simplify data collection across various sports.
 
+<hr>
+
 ## Available Sports
 ### Football
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/football.png" alt="Screenshot of Football Event Tracker" align="center"/></p>
-Available at [splxgoal-jkomar.pythonanywhere.com](https://splxgoal-jkomar.pythonanywhere.com/), the football event tracker was the first application to be developed. After a few development iterations, it now contains the following features:
+Available [here](https://splxgoal-jkomar.pythonanywhere.com/), the football event tracker was the first application to be developed. After a few development iterations, it now contains the following features:
 
 1. A timer to record the timestamp of session events
 2. Keyboard shortcut support for faster tagging
@@ -24,13 +26,19 @@ Available at [splxgoal-jkomar.pythonanywhere.com](https://splxgoal-jkomar.python
 
 After tagging events, users can download a CSV with event information and a PDF report containing the plots of the actions taken by each player during the session.
 
+<hr>
+
 ### Tennis
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/tennis.png" alt="Screenshot of Tennis Event Tracker" align="center"/></p>
-Available at [tennis-dash-jkomar.pythonanywhere.com](https://tennis-dash-jkomar.pythonanywhere.com/), this web app builds upon the features of the football tracker while incorporating relevant data fields such as Grip and Outcome.
+Available [here](https://tennis-dash-jkomar.pythonanywhere.com/), this web app builds upon the features of the football tracker while incorporating relevant data fields such as Grip and Outcome.
+
+<hr>
 
 ### Floorball
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/floorball.png" alt="Screenshot of Floorball Event Tracker" align="center"/></p>
-Available at [dash-jkomar.pythonanywhere.com](https://dash-jkomar.pythonanywhere.com/), this web app is not as fleshed out as the previous sports. However, it is still a functioning tool that can provide users with accurate coordinates with respect to the dimensions of a floorball court. 
+Available [here](https://dash-jkomar.pythonanywhere.com/), this web app is not as fleshed out as the previous sports. However, it is still a functioning tool that can provide users with accurate coordinates with respect to the dimensions of a floorball court. 
+
+<hr>
 
 ## What's Next?
 I've identified a few ways in which these applications can be improved:
