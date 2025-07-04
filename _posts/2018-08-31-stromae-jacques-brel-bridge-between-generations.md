@@ -7,9 +7,10 @@ tags: art
 comments: true
 ---
 
-<p class="full-width no-margin"><img src="https://cdn.britannica.com/94/198894-050-849E6CA3/Jacques-Brel-1963.jpg" alt="A still of Stromae from the music video Tous les Memes" align="center"/></p>
 
 On the 16th of May 1967, in the small town of Roubaix, the father figure of the modern chanson bid adieu to the grand stage. A lyrical genius whose influence spread far and wide, touching not only the hearts of millions of Belgians and French, but also inspiring legendary singers such as David Bowie, Jacques Brel produced era-defining music with his thoughtful and theatrical songs, reaching out to a generation of listeners with his beautifully crafted lyrics.
+
+<p class="full-width no-margin"><img src="https://cdn.britannica.com/94/198894-050-849E6CA3/Jacques-Brel-1963.jpg" alt="A still of Stromae from the music video Tous les Memes" align="center"/></p>
 
 A few years ago, in order to get to grips with the nuances of French and its wide variety of pronunciations and accents, I decided to immerse myself into the francophone culture in order to be better able to pick up on the language’s natural speech patterns.
 

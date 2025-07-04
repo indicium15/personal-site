@@ -7,9 +7,9 @@ tags: football
 comments: true
 ---
 
-<p class="full-width"><img src="https://talksport.com/wp-content/uploads/sites/5/2018/11/UnitedMourinho3.jpg" alt="Mourinho" align="center"/></p>
-
 Jose Mourinho became a prominent figure in the footballing world in the early 2000’s at FC Porto. In his first season, he won his first Premier Liga title with a then-record number of points. He found further success in his next season, winning the Portugese Super Cup, Primeria Liga and his first Champions League title with a win over Monaco in 2004.
+
+<p class="full-width"><img src="https://talksport.com/wp-content/uploads/sites/5/2018/11/UnitedMourinho3.jpg" alt="Mourinho" align="center"/></p>
 
 His high-profile move to Chelsea came with a similar amount of success, with back-to-back title wins. However, what truly set him apart from his peers was his demeanor. He became a fan-favorite with his entertaining press conferences, where he didn’t refrain from speaking what was on his mind, reminding people of his credentials, or attempting to get into his opponents heads with bizarrely creative insults. 
 

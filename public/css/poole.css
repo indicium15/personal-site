@@ -234,6 +234,13 @@ img {
   border-radius: 5px;
 }
 
+.sidebar-img{
+  color: white;
+  display: initial !important;
+  margin: 0;
+  margin-top: 1rem;
+}
+
 /* Tables */
 table {
   margin-bottom: 1rem;

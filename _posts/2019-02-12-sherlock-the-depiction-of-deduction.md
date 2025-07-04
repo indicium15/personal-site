@@ -7,9 +7,9 @@ tags: art
 comments: true
 ---
 
-<p class="full-width no-margin"><img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/06/Sherlocks-mind-palace-Benedict-Cumberbatch.jpg" alt="Sherlock Holmes (Benedict Cumberbatch)" align="center"/></p>
-
 My Extended Essay (a 4000-word research paper that I wrote while doing the IB Diploma) was centered around the use of stream of consciousness in The Sound and the Fury. It’s a literary technique that aims to describe a character’s thoughts, emotions, and reactions in one continuous flow, in essence, giving readers insight into a character’s mind – how and why they think and feel.
+
+<p class="full-width no-margin"><img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/06/Sherlocks-mind-palace-Benedict-Cumberbatch.jpg" alt="Sherlock Holmes (Benedict Cumberbatch)" align="center"/></p>
 
 What makes this novel special is that it is written entirely in the first person, with the plot shown through the eyes of multiple characters. William Faulkner created a personalized style of narration for every character, and throughout the novel, we got to see every character’s thought process – ranging from the more orthodox ones – from Dilsey – to more unique minds, such as Benjy, a character who is portrayed to be suffering from autism, and hence cannot distinguish between the past, present and the future.
 

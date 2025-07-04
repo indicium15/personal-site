@@ -7,11 +7,12 @@ tags: football
 comments: true
 ---
 
+
+After an outstanding twenty-year playing career, mercurial forward Thierry Henry entered the coaching world with the aim of emulating the success he achieved as a player. Following stints as a youth coach at Arsenal and an assistant coach at Belgium, Henry took over the reigns of a struggling AS Monaco from Leonardo Jardim in October 2018.
+
+<!--more-->
+
 <p class="full-width"><img src="{{'/'|relative_url}}assets/henry/0.png" alt="Thierry Henry" align="center"/></p>
-
-After an outstanding twenty-year playing career, mercurial forward Thierry Henry entered the coaching world with the aim of emulating the success he achieved as a player.
-
-Following stints as a youth coach at Arsenal and an assistant coach at Belgium, Henry took over the reigns of a struggling AS Monaco from Leonardo Jardim in October 2018.
 
 However, his tenure at his childhood club came to a quick end. He was suspended by the club in January 2019 after a disappointing four wins from twenty games. It was difficult to envision Henry succeeding at Monaco. He inherited a depleted Monaco side with key players lost to transfers and a sizable number of injuries. His lack of experience as a manager led to conflicts with his players, and perhaps his lack of coaching experience prevented him from achieving his vision of replicating the playing style of Guardiola’s Barcelona.
 
