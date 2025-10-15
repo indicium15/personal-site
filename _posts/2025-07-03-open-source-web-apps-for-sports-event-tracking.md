@@ -16,7 +16,7 @@ When push comes to shove and data needs to be collected manually, open source da
 ## Available Sports
 ### Football
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/football.png" alt="Screenshot of Football Event Tracker" align="center"/></p>
-Available [here](https://splxgoal-jkomar.pythonanywhere.com/), the football event tracker was the first application to be developed. After a few development iterations, it now contains the following features:
+Available [here](https://event-tracking-jkomar.pythonanywhere.com/football/), the football event tracker was the first application to be developed. After a few development iterations, it now contains the following features:
 
 1. A timer to record the timestamp of session events
 2. Keyboard shortcut support for faster tagging
@@ -30,13 +30,13 @@ After tagging events, users can download a CSV with event information and a PDF 
 
 ### Tennis
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/tennis.png" alt="Screenshot of Tennis Event Tracker" align="center"/></p>
-Available [here](https://tennis-dash-jkomar.pythonanywhere.com/), this web app builds upon the features of the football tracker while incorporating relevant data fields such as Grip and Outcome.
+Available [here](https://event-tracking-jkomar.pythonanywhere.com/tennis/), this web app builds upon the features of the football tracker while incorporating relevant data fields such as Grip and Outcome.
 
 <hr>
 
 ### Floorball
 <p class="full-width"><img src="{{'/'|relative_url}}assets/data-collection-apps/floorball.png" alt="Screenshot of Floorball Event Tracker" align="center"/></p>
-Available [here](https://dash-jkomar.pythonanywhere.com/), this web app is not as fleshed out as the previous sports. However, it is still a functioning tool that can provide users with accurate coordinates with respect to the dimensions of a floorball court. 
+Available [here](https://event-tracking-jkomar.pythonanywhere.com/floorball/), this web app is not as fleshed out as the previous sports. However, it is still a functioning tool that can provide users with accurate coordinates with respect to the dimensions of a floorball court. 
 
 <hr>
 
@@ -44,6 +44,7 @@ Available [here](https://dash-jkomar.pythonanywhere.com/), this web app is not a
 I've identified a few ways in which these applications can be improved:
 
 1. Refactoring the application to fit all sports into a single website.
+    - **Update: [https://event-tracking-jkomar.pythonanywhere.com](https://event-tracking-jkomar.pythonanywhere.com) is the new one-stop hub for all sports trackers.**
 2. Finding a user-friendly way to integrate video displays of sessions in the web app alongside the existing UI.
 3. Adding advanced metrics that are calculated based on the collected events for each sport.
 
