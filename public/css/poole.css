@@ -234,6 +234,16 @@ img {
   border-radius: 5px;
 }
 
+.full-width {
+  text-align: center;
+}
+
+.full-width img,
+.full-width video {
+  display: block;
+  margin: 0 auto 1rem;
+}
+
 .sidebar-img{
   color: white;
   display: initial !important;
