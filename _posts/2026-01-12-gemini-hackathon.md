@@ -19,7 +19,7 @@ I first stumbled upon Singapore Sign Language while I was looking for electives 
 While brainstorming for the Gemini 3 Hackathon, [Anurag](https://www.linkedin.com/in/anurag-roy-ba2788208/?originalSubdomain=sg), [Vaishnav](https://www.linkedin.com/in/vaishnav-m-73a8366a/), and I decided to leverage this dataset to build a real-time translation application that maps text to sequences of signs and presents them to the user via an avatar. Seven hours later, our entry was shortlisted, and we were pitching Unmute to the judges. This post covers how we built our application, the challenges we faced, and how we plan to extend it. 
 
 <p class="full-width">
-  <video src="{{'/'|relative_url}}assets/gemini-hackathon/example.mp4" autoplay loop muted style="width:100%; max-width:100%;"></video>
+  <video src="{{'/'|relative_url}}assets/gemini-hackathon/example.mp4" autoplay loop muted playsinline style="width:100%; max-width:100%;"></video>
 </p>
 
 
@@ -178,7 +178,7 @@ Using the `gloss` array output by Gemini, we subsequently look up the GIFs and M
 Using Gemini also allowed us to easily integrate multilingual and multimodal capabilities into our application, allowing users to interact with Unmute in any language supported by the Gemini API.
 
 <p class="full-width">
-  <video src="{{'/'|relative_url}}assets/gemini-hackathon/tamil-voice-example.mp4" autoplay loop muted style="width:100%; max-width:100%;"></video>
+  <video src="{{'/'|relative_url}}assets/gemini-hackathon/tamil-voice-example.mp4" autoplay loop muted playsinline style="width:100%; max-width:100%;"></video>
   <div style="text-align: center;"><em>Example of Tamil Voice Input</em></div>
 </p>
 
