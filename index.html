@@ -20,7 +20,54 @@ title: Home
       {% endfor %}
       ]
     </span>
-    {{ post.excerpt }}
+    {% assign content = post.content %}
+    {% assign first_image = '' %}
+    {% assign first_paragraph = '' %}
+    
+    {% comment %} Extract first image if it's in a full-width paragraph at the start {% endcomment %}
+    {% if content contains '<p class="full-width">' %}
+      {% assign parts = content | split: '<p class="full-width">' %}
+      {% if parts.size > 1 %}
+        {% assign image_content = parts[1] | split: '</p>' | first %}
+        {% if image_content contains '<img' %}
+          {% comment %} Remove inline style attributes - CSS will handle sizing {% endcomment %}
+          {% assign img_standardized = image_content %}
+          {% assign img_standardized = img_standardized | replace: ' style="max-width: 75%;"', '' %}
+          {% assign img_standardized = img_standardized | replace: " style='max-width: 75%;'", '' %}
+          {% assign img_standardized = img_standardized | replace: ' style="max-width:100%;"', '' %}
+          {% assign img_standardized = img_standardized | replace: " style='max-width:100%;'", '' %}
+          {% assign img_standardized = img_standardized | replace: ' style="max-width: 100%;"', '' %}
+          {% assign img_standardized = img_standardized | replace: " style='max-width: 100%;'", '' %}
+          {% assign img_standardized = img_standardized | replace: ' style="width:100%; max-width:100%;"', '' %}
+          {% assign img_standardized = img_standardized | replace: " style='width:100%; max-width:100%;'", '' %}
+          {% assign first_image = '<div class="post-preview-image"><p class="full-width">' | append: img_standardized | append: '</p></div>' %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    
+    {% comment %} Extract first text paragraph - look through all paragraphs {% endcomment %}
+    {% assign all_paragraphs = content | split: '<p' %}
+    {% for para_segment in all_paragraphs offset:1 %}
+      {% assign para_complete = '<p' | append: para_segment | split: '</p>' | first | append: '</p>' %}
+      {% assign para_text = para_complete | strip_html | strip %}
+      {% comment %} Skip if it's the image we already extracted, or contains images/videos {% endcomment %}
+      {% unless para_complete contains '<img' or para_complete contains '<video' or para_complete contains 'class="full-width"' %}
+        {% if para_text != '' and para_text.size > 10 %}
+          {% assign first_paragraph = para_complete %}
+          {% break %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+    
+    {% comment %} Display: image (if found), then paragraph (or excerpt as fallback) {% endcomment %}
+    {% if first_image != '' %}
+      {{ first_image }}
+    {% endif %}
+    {% if first_paragraph != '' %}
+      {{ first_paragraph }}
+    {% else %}
+      {{ post.excerpt }}
+    {% endif %}
     <a href="{{post.url}}">Read More</a>
   </div>
   <hr>

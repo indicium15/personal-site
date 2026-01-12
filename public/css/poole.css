@@ -244,6 +244,15 @@ img {
   margin: 0 auto 1rem;
 }
 
+/* Post preview image on index page */
+.post-preview-image {
+  margin-top: 0.5rem;
+}
+
+.post-preview-image .full-width img {
+  max-width: 100%;
+}
+
 .sidebar-img{
   color: white;
   display: initial !important;

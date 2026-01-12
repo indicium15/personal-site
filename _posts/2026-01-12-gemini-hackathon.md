@@ -16,7 +16,7 @@ I first stumbled upon Singapore Sign Language while I was looking for electives 
   <img src="{{'/'|relative_url}}assets/gemini-hackathon/signbank-example.png" alt="Content in Signbank Page" style="max-width: 75%;"/>
 </p>
 
-While brainstorming for the Gemini 3 Hackathon, [Anurag](https://www.linkedin.com/in/anurag-roy-ba2788208/?originalSubdomain=sg), [Vaishnav](https://www.linkedin.com/in/vaishnav-m-73a8366a/) and I decided to leverage this dataset to build a real-time translation application that maps text to sequences of signs and presents them to the user via an avatar. Seven hours later, our entry was shortlisted, and we were pitching Unmute to the judges. This post covers how we built our application, the challenges we faced, and how we plan to extend it. 
+While brainstorming for the Gemini 3 Hackathon, [Anurag](https://www.linkedin.com/in/anurag-roy-ba2788208/?originalSubdomain=sg), [Vaishnav](https://www.linkedin.com/in/vaishnav-m-73a8366a/), and I decided to leverage this dataset to build a real-time translation application that maps text to sequences of signs and presents them to the user via an avatar. Seven hours later, our entry was shortlisted, and we were pitching Unmute to the judges. This post covers how we built our application, the challenges we faced, and how we plan to extend it. 
 
 <p class="full-width">
   <video src="{{'/'|relative_url}}assets/gemini-hackathon/example.mp4" autoplay loop muted style="width:100%; max-width:100%;"></video>
