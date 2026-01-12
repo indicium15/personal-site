@@ -29,7 +29,7 @@ Using `selenium` and `BeautifulSoup`, we wrote a scraper to create a local copy 
 
 <p class="full-width">
   <img src="{{'/'|relative_url}}assets/gemini-hackathon/abuse.gif" alt="Sign For Abuse" style="max-width: 75%;"/>
-  <div style="text-align: center;">Sign For Abuse (<a href="https://blogs.ntu.edu.sg/sgslsignbank/word/?frm-word=Abuse">Source</a>)</div>
+  <div style="text-align: center;"><em>Sign For Abuse (<a href="https://blogs.ntu.edu.sg/sgslsignbank/word/?frm-word=Abuse">Source</a>)</em></div>
 </p>
 
 ```json
@@ -179,6 +179,7 @@ Using Gemini also allowed us to easily integrate multilingual and multimodal cap
 
 <p class="full-width">
   <video src="{{'/'|relative_url}}assets/gemini-hackathon/tamil-voice-example.mp4" autoplay loop muted style="width:100%; max-width:100%;"></video>
+  <div style="text-align: center;"><em>Example of Tamil Voice Input</em></div>
 </p>
 
 ### Visualizing Results
