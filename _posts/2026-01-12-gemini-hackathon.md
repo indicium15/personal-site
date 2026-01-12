@@ -140,7 +140,7 @@ The resulting `vocab.json` and `aliases.json` files serve as the foundation for 
 
 ### Translation with Gemini
 
-Given the time constraints of the hackathon and the fact that our generated vocabulary set was only around a thousand words, for a proof-of-concept, we provided the complete vocabulary list into our prompt and instructed Gemini to output a sequence of normalized tokens.
+Given the time constraints of the hackathon and the fact that our generated vocabulary set was only around a thousand words, for a proof-of-concept, we provided the complete vocabulary list into our prompt and instructed Gemini to output a sequence of normalized tokens known as [glosses](https://www.lifeprint.com/asl101/topics/gloss.htm).
 
 ```python
 prompt = f"""
