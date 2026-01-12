@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Breaking Down Unmute, Our 3rd Place Entry at the Gemini 3 Hackathon"
-date: 2026-01-11
+date: 2026-01-12
 categories: HACKATHON
 tags: hackathon
 ---
