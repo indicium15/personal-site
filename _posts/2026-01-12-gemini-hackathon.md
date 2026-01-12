@@ -189,7 +189,7 @@ Due to time constraints, we built a single-page web UI that interfaces with our 
 2. A `Three.js` skeleton rendered using `MediaPipe` pose estimation landmarks.
 
 ## 3. Conclusion and Future Directions
-Getting shortlisted from 200 participants, [pitching our application](https://youtu.be/rqz2dAt05tA) and finishing third was a surreal experience. I would like to take this opportunity to extend my heartfelt gratitude to Google DeepMind, Agrim, Evan, Ivan, Manikantan, Natalie, Sherry and Thor for organizing this event, judging submissions, and nurturing the rapidly growing builder scene in Singapore.
+Getting shortlisted from 200 participants, [pitching our application](https://youtu.be/rqz2dAt05tA), and finishing third was a surreal experience. I would like to take this opportunity to extend my heartfelt gratitude to Google DeepMind, Agrim, Evan, Ivan, Manikantan, Natalie, Sherry and Thor for organizing this event, judging submissions, and nurturing the rapidly growing builder scene in Singapore.
 
 With that being said, we're far from finished with building on this idea. Our team knows that we have barely scratched the surface of what this dataset and application are capable of. We are planning to make significant improvements:
 
