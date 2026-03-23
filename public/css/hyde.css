@@ -147,6 +147,21 @@ a.sidebar-nav-item:focus {
   }
 }
 
+@media (min-width: 100em) {
+  .content {
+    max-width: 52rem;
+    margin-left: 22rem;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 140em) {
+  .content {
+    max-width: 80rem;
+  }
+}
+
+
 
 /*
  * Reverse layout
