@@ -11,7 +11,7 @@ For a sport with a premise as simple as putting a ball into a net, football has 
 
 But is it possible to take these beliefs and look at them from a more traditional philosophical standpoint? Do football managers have something in common with some of the greatest thinkers on Earth? 
 
-<p class="full-width no-margin"><img src="https://www.arsenal.com/sites/default/files/styles/link_image_extra_large/public/images/wenger_trophies.jpg?auto=webp&itok=8rqSGHGj" alt="Arsene Wenger" align="center"/></p>
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/wenger/wenger-trophies.jpg" alt="Arsene Wenger" align="center"/></p>
 
 If one was looking to build a bridge between football and philosophy, they don’t have to look any more further than Arsene Wenger. A radical footballing mind, he singlehandedly brought English football into the modern ages by revolutionizing how athletes maintained themselves off the field. He made callisthenics, yoga and improved diets a staple of match preparation and recovery, and these measures were quickly adopted by his competitors after seeing the improvement that it had on the Arsenal players’ performance. The style of football he preached was eye-catching: at their best, Arsenal was a beautiful jazz orchestra, running a fluid offence with the help of technically gifted players.
 

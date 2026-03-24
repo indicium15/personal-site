@@ -244,13 +244,28 @@ img {
   margin: 0 auto 1rem;
 }
 
-/* Post preview image on index page */
+/* Post preview image/video on index page */
 .post-preview-image {
   margin-top: 0.5rem;
 }
 
 .post-preview-image .full-width img {
   max-width: 100%;
+}
+
+.post-preview-image .full-width video {
+  max-width: 100%;
+  max-height: 360px;
+}
+
+/* Infinite scroll sentinel */
+#infinite-scroll-sentinel {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #9a9a9a;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  min-height: 2rem;
 }
 
 .sidebar-img{

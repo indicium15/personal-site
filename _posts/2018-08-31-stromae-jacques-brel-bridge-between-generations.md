@@ -10,7 +10,7 @@ comments: true
 
 On the 16th of May 1967, in the small town of Roubaix, the father figure of the modern chanson bid adieu to the grand stage. A lyrical genius whose influence spread far and wide, touching not only the hearts of millions of Belgians and French, but also inspiring legendary singers such as David Bowie, Jacques Brel produced era-defining music with his thoughtful and theatrical songs, reaching out to a generation of listeners with his beautifully crafted lyrics.
 
-<p class="full-width no-margin"><img src="https://cdn.britannica.com/94/198894-050-849E6CA3/Jacques-Brel-1963.jpg" alt="A still of Stromae from the music video Tous les Memes" align="center"/></p>
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/stromae/jacques-brel.jpg" alt="Jacques Brel, 1963" align="center"/></p>
 
 A few years ago, in order to get to grips with the nuances of French and its wide variety of pronunciations and accents, I decided to immerse myself into the francophone culture in order to be better able to pick up on the language’s natural speech patterns.
 
@@ -18,7 +18,7 @@ I decided to start with French music. Given that rhythm is a universal language,
 
 At the time, he had established himself as a successful mainstream artist with the help of his debut album Racine Carrée, which followed up on his breakout hit Alors on Danse, a track that torched domestic charts and had a respectable amount of international success, even culminating in a remix by Kanye West that saw many listeners of English music turn their head towards the unorthodox Belgian singer of Rwandan origin.
 
-<p class="full-width no-margin"><img src="https://miro.medium.com/v2/resize:fit:2000/1*KcXjlVYznYaaqtr5oghxDw.jpeg" alt="A still of Stromae from the music video Papaoutai" align="center"/></p>
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/stromae/stromae-papaoutai.jpg" alt="A still of Stromae from the music video Papaoutai" align="center"/></p>
 
 It was clear from the start that there was something unique about his music. It wasn’t just about this surreal blend of genres – his songs combined the feel-good, envie de danser vibe of electronic music, the purity of acoustic instruments, and melodious vocal harmonies created with the help of his immensely talented group of musicians. However, what really brought his songs together were the lyrics. Melodiously written, yet so strikingly powerful, each of his songs tackled an idea that was truly important – not just singing for the sake of it.
 

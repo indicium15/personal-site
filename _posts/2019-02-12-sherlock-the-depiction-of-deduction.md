@@ -9,7 +9,7 @@ comments: true
 
 My Extended Essay (a 4000-word research paper that I wrote while doing the IB Diploma) was centered around the use of stream of consciousness in The Sound and the Fury. It’s a literary technique that aims to describe a character’s thoughts, emotions, and reactions in one continuous flow, in essence, giving readers insight into a character’s mind – how and why they think and feel.
 
-<p class="full-width no-margin"><img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/06/Sherlocks-mind-palace-Benedict-Cumberbatch.jpg" alt="Sherlock Holmes (Benedict Cumberbatch)" align="center"/></p>
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/sherlock/sherlock-mind-palace.jpg" alt="Sherlock Holmes (Benedict Cumberbatch)" align="center"/></p>
 
 What makes this novel special is that it is written entirely in the first person, with the plot shown through the eyes of multiple characters. William Faulkner created a personalized style of narration for every character, and throughout the novel, we got to see every character’s thought process – ranging from the more orthodox ones – from Dilsey – to more unique minds, such as Benjy, a character who is portrayed to be suffering from autism, and hence cannot distinguish between the past, present and the future.
 
@@ -24,7 +24,8 @@ With BBC’s Sherlock comes a drastic change in setting, with Baker Street movin
 ## Deduction-On-Screen
 
 Mirroring the way information is present almost everywhere in the modern era, BBC’s Sherlock features the extensive use of annotations on-screen. Often appearing when Sherlock sizes up a suspect or looks at clues in a crime scene, it gives us an idea of what the things he observes and the facts that he deduces from them. This “real-time processing” allows readers to remain on the same page as Sherlock, while getting an idea of how he sizes up people and crime scenes.
-Image result for sherlock deduction
+
+<p class="full-width no-margin"><img src="{{‘/’|relative_url}}assets/sherlock/sherlock-clues-of-deduction.jpg" alt="Sherlock’s on-screen deduction annotations" align="center"/></p>
 
 However, there is also a balance drawn that ensures that extraordinary abilities are not normalized – there are certain scenes where he sifts through all this information at blinding speed, and the way in which information flies across the screen really serves to highlight how fast his mind works.
 
@@ -38,7 +39,7 @@ This unique style of presentation offers us unique insight into Sherlock’s min
 A concept thoroughly explored throughout the show is Sherlock’s “Mind Palace”, a technique that allows him to assimilate and store vast amounts of knowledge in his mind. Through making a ‘journey’ through a place he knows well (his family home), he can place various memories and bits of information in different areas, and revisit them when required. The show features this in great detail, with Sherlock using it quite often when he’s deducing.
 
 What really highlights his abilities, are, however, when we’re brought into the perspective of his subconscious, which allows us to see the extent to which he can visualize things – whether it be his mind palace or various crime scenes. His subconscious creates such a meticulous image that he can use for detailed investigation.
-Image result for sherlock shot by mary
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/sherlock/sherlock-shot-by-mary.gif" alt="Sherlock being shot by Mary" align="center"/></p>
 
 For example, when he was shot by Mary, before he blacked out, he had to decide if he had to fall forwards or backward to maximize his chances of survival. Using the model of the room his mind had made, he gathered enough information (such as determining that the bullet did not pass through the body since he didn’t hear the glass behind him breaking) to fall backward.
 

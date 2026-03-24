@@ -101,7 +101,17 @@ a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
   text-decoration: underline;
 }
-.sidebar-nav-item.active {
+.sidebar-nav-item a {
+  color: rgba(255,255,255,0.6);
+  transition: color 0.15s ease;
+}
+.sidebar-nav-item a:hover,
+.sidebar-nav-item a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+.sidebar-nav-item.active a {
+  color: #fff;
   font-weight: bold;
 }
 

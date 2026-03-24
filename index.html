@@ -16,35 +16,38 @@ title: Home
       [&nbsp;
       {% for tag in post.tags %}
         {% capture tag_name %}{{ tag }}{% endcapture %}
-        <a class="no-underline" href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>    
+        <a class="no-underline" href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
       {% endfor %}
       ]
     </span>
     {% assign content = post.content %}
     {% assign first_image = '' %}
     {% assign first_paragraph = '' %}
-    
-    {% comment %} Extract first image if it's in a full-width paragraph at the start {% endcomment %}
+
+    {% comment %} Normalise legacy full-width no-margin paragraphs so extraction works for all posts {% endcomment %}
+    {% assign content = content | replace: '<p class="full-width no-margin">', '<p class="full-width">' %}
+
+    {% comment %} Extract first image or video if it's in a full-width paragraph at the start {% endcomment %}
     {% if content contains '<p class="full-width">' %}
       {% assign parts = content | split: '<p class="full-width">' %}
       {% if parts.size > 1 %}
-        {% assign image_content = parts[1] | split: '</p>' | first %}
-        {% if image_content contains '<img' %}
+        {% assign media_content = parts[1] | split: '</p>' | first %}
+        {% if media_content contains '<img' or media_content contains '<video' %}
           {% comment %} Remove inline style attributes - CSS will handle sizing {% endcomment %}
-          {% assign img_standardized = image_content %}
-          {% assign img_standardized = img_standardized | replace: ' style="max-width: 75%;"', '' %}
-          {% assign img_standardized = img_standardized | replace: " style='max-width: 75%;'", '' %}
-          {% assign img_standardized = img_standardized | replace: ' style="max-width:100%;"', '' %}
-          {% assign img_standardized = img_standardized | replace: " style='max-width:100%;'", '' %}
-          {% assign img_standardized = img_standardized | replace: ' style="max-width: 100%;"', '' %}
-          {% assign img_standardized = img_standardized | replace: " style='max-width: 100%;'", '' %}
-          {% assign img_standardized = img_standardized | replace: ' style="width:100%; max-width:100%;"', '' %}
-          {% assign img_standardized = img_standardized | replace: " style='width:100%; max-width:100%;'", '' %}
-          {% assign first_image = '<div class="post-preview-image"><p class="full-width">' | append: img_standardized | append: '</p></div>' %}
+          {% assign media_standardized = media_content %}
+          {% assign media_standardized = media_standardized | replace: ' style="max-width: 75%;"', '' %}
+          {% assign media_standardized = media_standardized | replace: " style='max-width: 75%;'", '' %}
+          {% assign media_standardized = media_standardized | replace: ' style="max-width:100%;"', '' %}
+          {% assign media_standardized = media_standardized | replace: " style='max-width:100%;'", '' %}
+          {% assign media_standardized = media_standardized | replace: ' style="max-width: 100%;"', '' %}
+          {% assign media_standardized = media_standardized | replace: " style='max-width: 100%;'", '' %}
+          {% assign media_standardized = media_standardized | replace: ' style="width:100%; max-width:100%;"', '' %}
+          {% assign media_standardized = media_standardized | replace: " style='width:100%; max-width:100%;'", '' %}
+          {% assign first_image = '<div class="post-preview-image"><p class="full-width">' | append: media_standardized | append: '</p></div>' %}
         {% endif %}
       {% endif %}
     {% endif %}
-    
+
     {% comment %} Extract first text paragraph - look through all paragraphs {% endcomment %}
     {% assign all_paragraphs = content | split: '<p' %}
     {% for para_segment in all_paragraphs offset:1 %}
@@ -58,8 +61,8 @@ title: Home
         {% endif %}
       {% endunless %}
     {% endfor %}
-    
-    {% comment %} Display: image (if found), then paragraph (or excerpt as fallback) {% endcomment %}
+
+    {% comment %} Display: image/video (if found), then paragraph (or excerpt as fallback) {% endcomment %}
     {% if first_image != '' %}
       {{ first_image }}
     {% endif %}
@@ -74,19 +77,8 @@ title: Home
   {% endfor %}
 </div>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
+<div id="infinite-scroll-sentinel"{% if paginator.next_page %} data-next-page="{{ site.baseurl }}page{{paginator.next_page}}"{% endif %}>
+  <span class="infinite-scroll-status"></span>
 </div>
+
+<script src="{{ site.baseurl }}public/js/infinite-scroll.js"></script>
