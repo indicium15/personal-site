@@ -258,6 +258,7 @@ img {
   max-height: 360px;
 }
 
+
 /* Infinite scroll sentinel */
 #infinite-scroll-sentinel {
   text-align: center;
@@ -372,6 +373,20 @@ tbody tr:nth-child(odd) th {
 .page,
 .post {
   margin-bottom: 2rem;
+  position: relative;
+}
+
+/* Stretched link — makes the entire post card clickable via the title anchor */
+.post-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* Keep tag links and other interactive elements above the stretched link */
+.post-tags a,
+.post-tags code {
+  position: relative;
 }
 
 /* Blog post or page title */

@@ -71,13 +71,12 @@ title: Home
     {% else %}
       {{ post.excerpt }}
     {% endif %}
-    <a href="{{post.url}}">Read More</a>
   </div>
   <hr>
   {% endfor %}
 </div>
 
-<div id="infinite-scroll-sentinel"{% if paginator.next_page %} data-next-page="{{ site.baseurl }}page{{paginator.next_page}}"{% endif %}>
+<div id="infinite-scroll-sentinel"{% if paginator.next_page %} data-next-page="/page{{paginator.next_page}}"{% endif %}>
   <span class="infinite-scroll-status"></span>
 </div>
 

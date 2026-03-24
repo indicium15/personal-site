@@ -10,7 +10,7 @@ title: Chaitanya Jadhav
 tagline: ""
 description: ""
 url: chaitanyajadhav.com
-baseurl: /
+baseurl: ""
 emailme: chaitanya.jadhav15@hotmail.com
 github: https://github.com/indicium15/personal-site
 #TODO - get this working someday
@@ -20,7 +20,7 @@ github: https://github.com/indicium15/personal-site
 author:
   name: "Chaitanya Jadhav"
 
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate, jekyll-sitemap]
 paginate: 5
 
 # Custom vars
