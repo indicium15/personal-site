@@ -25,7 +25,7 @@ With BBC’s Sherlock comes a drastic change in setting, with Baker Street movin
 
 Mirroring the way information is present almost everywhere in the modern era, BBC’s Sherlock features the extensive use of annotations on-screen. Often appearing when Sherlock sizes up a suspect or looks at clues in a crime scene, it gives us an idea of what the things he observes and the facts that he deduces from them. This “real-time processing” allows readers to remain on the same page as Sherlock, while getting an idea of how he sizes up people and crime scenes.
 
-<p class="full-width no-margin"><img src="{{‘/’|relative_url}}assets/sherlock/sherlock-clues-of-deduction.jpg" alt="Sherlock’s on-screen deduction annotations" align="center"/></p>
+<p class="full-width no-margin"><img src="{{'/'|relative_url}}assets/sherlock/sherlock-clues-of-deduction.jpg" alt="Sherlock’s on-screen deduction annotations" align="center"/></p>
 
 However, there is also a balance drawn that ensures that extraordinary abilities are not normalized – there are certain scenes where he sifts through all this information at blinding speed, and the way in which information flies across the screen really serves to highlight how fast his mind works.
 
