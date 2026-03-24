@@ -7,10 +7,10 @@ tags: hackathon
 ---
 
 <p class="full-width">
-  <video src="{{'/'|relative_url}}assets/rpg-hackathon/demo.mov" autoplay loop muted playsinline style="width:100%; max-width:100%;"></video>
+  <video src="{{'/'|relative_url}}assets/rpg-hackathon/demo.mp4" autoplay loop muted playsinline style="width:100%; max-width:100%;"></video>
 </p>
 
-Before a robot can do anything useful in an unknown space, you need an extensive understanding of the environment it will operate in. Traditional solutions use SLAM to create accurate 2D and 3D maps, and also create semantic graphs with pre-tagged objects using sensor rigs like LiDAR or cameras. At the recent [Gemini 3 Singapore Hackathon hosted by CerebralValley](https://cerebralvalley.ai/e/gemini-3-singapore-hackathon/hackathon/gallery), [Anurag](https://www.linkedin.com/in/anurag-roy-ba2788208/) and I wanted to see how far we could get by just leveraging the multimodal capabilities and world understanding of the Gemini models. We developed Robotic Planning with Gemini (RPG), an embodied AI project that lets a robot understand and plan tasks in an unfamiliar indoor environment using only sequential photographs.
+Before a robot can do anything useful in an unknown space, you need an extensive understanding of the environment it will operate in. Traditional solutions use SLAM (Simultaneous Localization and Mapping) to create accurate 2D and 3D maps, and also create semantic graphs with pre-tagged objects using sensor rigs like LiDAR or cameras. At the recent [Gemini 3 Singapore Hackathon hosted by CerebralValley](https://cerebralvalley.ai/e/gemini-3-singapore-hackathon/hackathon/gallery), [Anurag](https://www.linkedin.com/in/anurag-roy-ba2788208/) and I wanted to see how far we could get by just leveraging the multimodal capabilities and world understanding of the Gemini models. We developed Robotic Planning with Gemini (RPG), an embodied AI project that lets a robot understand and plan tasks in an unfamiliar indoor environment using only sequential photographs.
 
 ## 1. Pipeline Architecture
 
