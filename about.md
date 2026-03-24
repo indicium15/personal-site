@@ -13,7 +13,7 @@ Hi, I'm Chaitanya, an AI Engineer at PhillipCapital based in Singapore. In my fr
 A real-time Singapore Sign Language translation app that converts text or voice in any language to sign sequences, rendered by a 3D avatar. Built using Gemini for multilingual translation and MediaPipe for pose estimation. Finished 3rd out of 200 teams at the Gemini 3 Hackathon.
 
 ### [RPG — Robotic Planning with Gemini](/hackathon/2026/03/23/cerebralvalley-gemini-hackathon/)
-An embodied AI system that lets a robot understand and plan tasks in an unfamiliar environment using only sequential photographs — no LiDAR, no pre-built maps. Covers scene decomposition, floor plan synthesis, spatial localisation, and task planning. Top 6 at the CerebralValley Gemini 3 Singapore Hackathon.
+An embodied AI system that lets a robot understand and plan tasks in an unfamiliar environment using only sequential photographs. Covers scene decomposition, floor plan synthesis, spatial localisation, and task planning. Top 6 at the CerebralValley Gemini 3 Singapore Hackathon.
 
 ### [Sports Event Tracking Apps](/projects/2025/07/03/open-source-web-apps-for-sports-event-tracking/)
 Open source web applications for manual sports data collection across football, tennis, and floorball, built with Assoc. Prof John Komar at NTU. Features include event tagging, keyboard shortcuts, an expected goals model, and CSV/PDF export.
