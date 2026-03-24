@@ -10,7 +10,7 @@ Hi, I'm Chaitanya, an AI Engineer at PhillipCapital based in Singapore. In my fr
 ## Current Projects
 
 ### [Unmute](/hackathon/2026/01/12/gemini-hackathon/)
-A real-time Singapore Sign Language translation app that converts text or voice in any language to sign sequences, rendered by a 3D avatar. Built using Gemini for multilingual translation and MediaPipe for pose estimation. Finished 3rd out of 200 teams at the Gemini 3 Hackathon.
+A real-time Singapore Sign Language translation app that converts text or voice in any language to sign sequences, rendered by a 2D avatar. Built using Gemini for multilingual translation and MediaPipe for pose estimation. Finished 3rd out of 200 teams at the Gemini 3 Hackathon.
 
 ### [RPG — Robotic Planning with Gemini](/hackathon/2026/03/23/cerebralvalley-gemini-hackathon/)
 An embodied AI system that lets a robot understand and plan tasks in an unfamiliar environment using only sequential photographs. Covers scene decomposition, floor plan synthesis, spatial localisation, and task planning. Top 6 at the CerebralValley Gemini 3 Singapore Hackathon.
