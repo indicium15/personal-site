@@ -244,12 +244,15 @@ img {
   margin: 0 auto 1rem;
 }
 
-/* Post preview image on index page */
-.post-preview-image {
+/* Post preview media (image or video) on index page */
+.post-preview-media {
   margin-top: 0.5rem;
 }
 
-.post-preview-image .full-width img {
+.post-preview-media .full-width img,
+.post-preview-media .full-width video {
+  max-height: 300px;
+  width: auto;
   max-width: 100%;
 }
 
