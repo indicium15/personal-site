@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <title>Task DAG - RPG</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      background: #fff;
+      color: #333;
+      overflow: hidden;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 16px 6px;
+    }
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    select {
+      font-family: inherit;
+      font-size: 12px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #fff;
+      cursor: pointer;
+      color: #333;
+    }
+    select:focus { outline: none; border-color: #9a3334; }
+    #dag-svg { display: block; width: 100%; }
+    .node rect {
+      stroke-width: 1.5;
+      rx: 5;
+    }
+    .node text {
+      font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 11px;
+      fill: #fff;
+      pointer-events: none;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+    .node .task-id {
+      font-size: 9px;
+      fill: rgba(255,255,255,0.75);
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+    .link {
+      fill: none;
+      stroke: #aaa;
+      stroke-width: 1.5;
+      marker-end: url(#arrow);
+    }
+    .info-panel {
+      position: absolute;
+      top: 50px;
+      right: 12px;
+      width: 200px;
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 11px;
+      line-height: 1.5;
+      display: none;
+    }
+    .info-panel.visible { display: block; }
+    .info-panel h4 {
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #222;
+    }
+    .info-panel .field { margin-bottom: 4px; }
+    .info-panel .field span { font-weight: 600; color: #555; }
+    .hint {
+      font-size: 10.5px;
+      color: #999;
+      padding: 0 16px 8px;
+      font-style: italic;
+    }
+    .legend-area {
+      padding: 4px 16px 8px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #555;
+    }
+    .legend-swatch {
+      width: 12px; height: 12px; border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <label for="robot-select">Robot Type</label>
+      <select id="robot-select">
+        <option value="humanoid" selected>Humanoid</option>
+        <option value="quadruped">Quadruped</option>
+        <option value="mobile_base">Mobile Base</option>
+      </select>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <label for="task-select">Task</label>
+      <select id="task-select">
+        <option value="clean" selected>Clean the pantry</option>
+        <option value="fetch">Fetch items from pantry</option>
+        <option value="inspect">Inspect and monitor area</option>
+      </select>
+    </div>
+  </div>
+  <div class="legend-area" id="legend-area"></div>
+  <div style="position:relative;">
+    <svg id="dag-svg"></svg>
+    <div class="info-panel" id="info-panel">
+      <h4 id="ip-title">Task</h4>
+      <div class="field"><span>Action: </span><span id="ip-action"></span></div>
+      <div class="field"><span>Object: </span><span id="ip-object"></span></div>
+      <div class="field"><span>Location: </span><span id="ip-location"></span></div>
+      <div class="field"><span>Depends on: </span><span id="ip-deps"></span></div>
+    </div>
+  </div>
+  <p class="hint">Click a node to inspect the subtask details.</p>
+
+  <script>
+    // ─── Data ────────────────────────────────────────────────────────────────
+    // Task DAGs for each robot × task combination.
+    // Each node: { id, label, action, object, location, deps[] }
+    // Phase determines color grouping.
+
+    const PHASE_COLORS = {
+      prepare:  "#2171b5",
+      navigate: "#6baed6",
+      interact: "#9a3334",
+      complete: "#41ab5d",
+    };
+
+    const TASKS = {
+      humanoid: {
+        clean: [
+          { id:1, label:"Navigate to\ncleaning cart", action:"navigate", object:"cleaning_cart", location:"storage_zone", deps:[], phase:"navigate" },
+          { id:2, label:"Grab\ncleaning cart", action:"grab", object:"cleaning_cart", location:"storage_zone", deps:[1], phase:"interact" },
+          { id:3, label:"Push cart to\ncabinet", action:"push", object:"cleaning_cart", location:"pantry_counter_cabinet", deps:[2], phase:"navigate" },
+          { id:4, label:"Wipe\ncabinet surfaces", action:"wipe_surface", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[3], phase:"interact" },
+          { id:5, label:"Push cart to\noval table", action:"push", object:"cleaning_cart", location:"oval_communal_table", deps:[4], phase:"navigate" },
+          { id:6, label:"Wipe\ntable surfaces", action:"wipe_surface", object:"oval_communal_table", location:"oval_communal_table", deps:[5], phase:"interact" },
+          { id:7, label:"Return cart to\nstorage", action:"push", object:"cleaning_cart", location:"storage_zone", deps:[6], phase:"complete" },
+        ],
+        fetch: [
+          { id:1, label:"Navigate to\npantry counter", action:"navigate", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[], phase:"navigate" },
+          { id:2, label:"Reach for\ncoffee machine", action:"reach", object:"coffee_espresso_machine", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Grab\ncoffee cup", action:"grab", object:"coffee_cup", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:4, label:"Turn on\ncoffee machine", action:"turn_on", object:"coffee_espresso_machine", location:"pantry_counter_cabinet", deps:[2,3], phase:"interact" },
+          { id:5, label:"Pick up\nfilled cup", action:"pick_up", object:"coffee_cup", location:"pantry_counter_cabinet", deps:[4], phase:"interact" },
+          { id:6, label:"Carry cup\nto table", action:"carry", object:"coffee_cup", location:"oval_communal_table", deps:[5], phase:"navigate" },
+          { id:7, label:"Place cup\non table", action:"place", object:"coffee_cup", location:"oval_communal_table", deps:[6], phase:"complete" },
+        ],
+        inspect: [
+          { id:1, label:"Navigate to\ncenter", action:"navigate", object:"-", location:"oval_communal_table", deps:[], phase:"navigate" },
+          { id:2, label:"Inspect\ncabinet", action:"inspect", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Inspect\ncoffee machine", action:"inspect", object:"coffee_espresso_machine", location:"pantry_counter_cabinet", deps:[2], phase:"interact" },
+          { id:4, label:"Navigate to\nphone booth", action:"navigate", object:"-", location:"phone_booth_entry", deps:[1], phase:"navigate" },
+          { id:5, label:"Inspect\nphone booth", action:"inspect", object:"phone_booth_entry", location:"phone_booth_entry", deps:[4], phase:"interact" },
+          { id:6, label:"Report\nfindings", action:"alert", object:"-", location:"oval_communal_table", deps:[3,5], phase:"complete" },
+        ],
+      },
+      quadruped: {
+        clean: [
+          { id:1, label:"Navigate to\ncabinet area", action:"navigate", object:"-", location:"pantry_counter_cabinet", deps:[], phase:"navigate" },
+          { id:2, label:"Inspect\ncabinet floor", action:"inspect_floor", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Navigate to\ntable area", action:"navigate", object:"-", location:"oval_communal_table", deps:[1], phase:"navigate" },
+          { id:4, label:"Inspect\ntable floor", action:"inspect_floor", object:"oval_communal_table", location:"oval_communal_table", deps:[3], phase:"interact" },
+          { id:5, label:"Alert\noperator", action:"alert", object:"-", location:"oval_communal_table", deps:[2,4], phase:"complete" },
+        ],
+        fetch: [
+          { id:1, label:"Navigate to\ncabinet", action:"navigate", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[], phase:"navigate" },
+          { id:2, label:"Sniff & detect\nlow items", action:"sniff", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Alert\noperator", action:"alert", object:"-", location:"pantry_counter_cabinet", deps:[2], phase:"complete" },
+        ],
+        inspect: [
+          { id:1, label:"Patrol\nperimeter", action:"patrol", object:"-", location:"oval_communal_table", deps:[], phase:"navigate" },
+          { id:2, label:"Monitor\ncabinet zone", action:"monitor", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Monitor\ntable zone", action:"monitor", object:"oval_communal_table", location:"oval_communal_table", deps:[1], phase:"interact" },
+          { id:4, label:"Guard\nexit", action:"guard", object:"hallway_exit_path", location:"hallway_exit_path", deps:[2,3], phase:"complete" },
+        ],
+      },
+      mobile_base: {
+        clean: [
+          { id:1, label:"Undock from\nbase station", action:"undock", object:"-", location:"storage_zone", deps:[], phase:"prepare" },
+          { id:2, label:"Navigate to\ncabinet area", action:"navigate", object:"-", location:"pantry_counter_cabinet", deps:[1], phase:"navigate" },
+          { id:3, label:"Sweep\ncabinet floor", action:"sweep", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[2], phase:"interact" },
+          { id:4, label:"Navigate to\ntable area", action:"navigate", object:"-", location:"oval_communal_table", deps:[3], phase:"navigate" },
+          { id:5, label:"Mop\ntable floor", action:"mop", object:"oval_communal_table", location:"oval_communal_table", deps:[4], phase:"interact" },
+          { id:6, label:"Cover\nremaining area", action:"cover_area", object:"-", location:"oval_communal_table", deps:[5], phase:"interact" },
+          { id:7, label:"Dock at\nbase station", action:"dock", object:"-", location:"storage_zone", deps:[6], phase:"complete" },
+        ],
+        fetch: [
+          { id:1, label:"Navigate to\ncabinet", action:"navigate", object:"pantry_counter_cabinet", location:"pantry_counter_cabinet", deps:[], phase:"navigate" },
+          { id:2, label:"Wait for\noperator", action:"wait", object:"-", location:"pantry_counter_cabinet", deps:[1], phase:"interact" },
+          { id:3, label:"Navigate to\ndesk", action:"navigate", object:"-", location:"oval_communal_table", deps:[2], phase:"navigate" },
+          { id:4, label:"Dock at\nbase station", action:"dock", object:"-", location:"storage_zone", deps:[3], phase:"complete" },
+        ],
+        inspect: [
+          { id:1, label:"Undock from\nbase station", action:"undock", object:"-", location:"storage_zone", deps:[], phase:"prepare" },
+          { id:2, label:"Patrol\nroom", action:"patrol", object:"-", location:"oval_communal_table", deps:[1], phase:"navigate" },
+          { id:3, label:"Inspect\nfloor zones", action:"inspect_floor", object:"-", location:"pantry_counter_cabinet", deps:[2], phase:"interact" },
+          { id:4, label:"Dock at\nbase station", action:"dock", object:"-", location:"storage_zone", deps:[3], phase:"complete" },
+        ],
+      },
+    };
+
+    // ─── Layout helpers ──────────────────────────────────────────────────────
+    // Simple topological-sort-based layered layout.
+    function layeredLayout(nodes, width) {
+      const nodeMap = {};
+      nodes.forEach(n => { nodeMap[n.id] = n; });
+
+      // Compute layer for each node (longest path from source)
+      const layer = {};
+      const visited = new Set();
+      function getLayer(id) {
+        if (id in layer) return layer[id];
+        if (visited.has(id)) return 0;
+        visited.add(id);
+        const deps = nodeMap[id].deps;
+        if (!deps.length) { layer[id] = 0; return 0; }
+        layer[id] = 1 + Math.max(...deps.map(d => getLayer(d)));
+        return layer[id];
+      }
+      nodes.forEach(n => getLayer(n.id));
+
+      const maxLayer = Math.max(...Object.values(layer));
+      const layerGroups = {};
+      nodes.forEach(n => {
+        const l = layer[n.id];
+        if (!layerGroups[l]) layerGroups[l] = [];
+        layerGroups[l].push(n);
+      });
+
+      const NODE_W = 110, NODE_H = 44, H_GAP = 50, V_GAP = 30;
+      const totalLayers = maxLayer + 1;
+      const svgH = totalLayers * (NODE_H + V_GAP) + V_GAP;
+
+      const positions = {};
+      for (let l = 0; l <= maxLayer; l++) {
+        const grp = layerGroups[l] || [];
+        const totalW = grp.length * NODE_W + (grp.length - 1) * H_GAP;
+        const startX = (width - totalW) / 2;
+        grp.forEach((n, i) => {
+          positions[n.id] = {
+            x: startX + i * (NODE_W + H_GAP) + NODE_W / 2,
+            y: l * (NODE_H + V_GAP) + V_GAP + NODE_H / 2,
+            w: NODE_W, h: NODE_H,
+          };
+        });
+      }
+      return { positions, svgH };
+    }
+
+    // ─── Rendering ───────────────────────────────────────────────────────────
+    const svgEl    = document.getElementById("dag-svg");
+    const infoPanel = document.getElementById("info-panel");
+    const svg      = d3.select(svgEl);
+
+    let selectedNode = null;
+
+    function renderLegend() {
+      const area = document.getElementById("legend-area");
+      area.innerHTML = "";
+      Object.entries(PHASE_COLORS).forEach(([phase, color]) => {
+        const item = document.createElement("div");
+        item.className = "legend-item";
+        item.innerHTML = `<div class="legend-swatch" style="background:${color}"></div>${phase.charAt(0).toUpperCase() + phase.slice(1)}`;
+        area.appendChild(item);
+      });
+    }
+
+    function showInfo(node) {
+      selectedNode = node.id;
+      document.getElementById("ip-title").textContent = `Task ${node.id}: ${node.action}`;
+      document.getElementById("ip-action").textContent = node.action;
+      document.getElementById("ip-object").textContent = node.object === "-" ? "none" : node.object.replace(/_/g, " ");
+      document.getElementById("ip-location").textContent = node.location.replace(/_/g, " ");
+      document.getElementById("ip-deps").textContent = node.deps.length ? node.deps.map(d => `T${d}`).join(", ") : "none";
+      infoPanel.classList.add("visible");
+    }
+
+    function hideInfo() {
+      selectedNode = null;
+      infoPanel.classList.remove("visible");
+    }
+
+    function render(robot, task) {
+      hideInfo();
+      svg.selectAll("*").remove();
+
+      const nodes = TASKS[robot][task];
+      const width = svgEl.parentElement.clientWidth || 560;
+      const { positions, svgH } = layeredLayout(nodes, width);
+
+      svgEl.setAttribute("height", svgH + 10);
+      svgEl.setAttribute("width", width);
+
+      // Arrow marker
+      svg.append("defs").append("marker")
+        .attr("id", "arrow")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 10).attr("refY", 0)
+        .attr("markerWidth", 6).attr("markerHeight", 6)
+        .attr("orient", "auto")
+        .append("path").attr("d", "M0,-5L10,0L0,5").attr("fill", "#aaa");
+
+      // Draw edges
+      nodes.forEach(n => {
+        n.deps.forEach(dep => {
+          const src = positions[dep];
+          const tgt = positions[n.id];
+          // Edge goes from bottom of source to top of target
+          const x1 = src.x, y1 = src.y + src.h / 2;
+          const x2 = tgt.x, y2 = tgt.y - tgt.h / 2;
+          const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+          svg.append("path")
+            .attr("class", "link")
+            .attr("d", `M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}`);
+        });
+      });
+
+      // Draw nodes
+      nodes.forEach(n => {
+        const pos = positions[n.id];
+        const color = PHASE_COLORS[n.phase];
+        const grp = svg.append("g")
+          .attr("class", "node")
+          .attr("transform", `translate(${pos.x - pos.w/2},${pos.y - pos.h/2})`)
+          .style("cursor", "pointer")
+          .on("click", (event) => {
+            event.stopPropagation();
+            if (selectedNode === n.id) { hideInfo(); return; }
+            showInfo(n);
+            // Highlight
+            svg.selectAll(".node rect").attr("stroke", d => d === n ? "#222" : color);
+          });
+
+        grp.append("rect")
+          .attr("width", pos.w).attr("height", pos.h)
+          .attr("fill", color)
+          .attr("stroke", "#fff")
+          .attr("rx", 5);
+
+        // Task number badge
+        grp.append("text")
+          .attr("class", "task-id")
+          .attr("x", pos.w / 2).attr("y", 10)
+          .text(`T${n.id}`);
+
+        // Label (wraps on \n)
+        const lines = n.label.split("\n");
+        const lineH = 13;
+        const totalTextH = lines.length * lineH;
+        const startY = (pos.h - totalTextH) / 2 + lineH / 2 + 4;
+        lines.forEach((line, li) => {
+          grp.append("text")
+            .attr("x", pos.w / 2)
+            .attr("y", startY + li * lineH)
+            .text(line);
+        });
+      });
+
+      svg.on("click", hideInfo);
+    }
+
+    // ─── Controls ────────────────────────────────────────────────────────────
+    const robotSel = document.getElementById("robot-select");
+    const taskSel  = document.getElementById("task-select");
+
+    function redraw() { render(robotSel.value, taskSel.value); }
+
+    robotSel.addEventListener("change", redraw);
+    taskSel.addEventListener("change",  redraw);
+
+    renderLegend();
+    redraw();
+    window.addEventListener("resize", redraw);
+  </script>
+</body>
+</html>

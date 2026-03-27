@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <title>Model Performance - Badminton Analytics</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      background: #fff;
+      color: #333;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 16px 8px;
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    select {
+      font-family: inherit;
+      font-size: 12px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #fff;
+      cursor: pointer;
+      color: #333;
+    }
+    select:focus { outline: none; border-color: #9a3334; }
+    #chart { width: 100%; }
+    .bar { cursor: default; }
+    .bar:hover { opacity: 0.8; }
+    .axis text {
+      font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 11px;
+      fill: #555;
+    }
+    .axis line, .axis path { stroke: #ccc; }
+    .axis .domain { stroke: #ccc; }
+    .grid line { stroke: #eee; stroke-dasharray: 2,2; }
+    .grid .domain { stroke: none; }
+    .legend { font-size: 11px; }
+    .legend rect { rx: 2; }
+    .tooltip {
+      position: fixed;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .note {
+      font-size: 10.5px;
+      color: #888;
+      padding: 0 16px 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <div class="control-group">
+      <label for="metric-select">Metric</label>
+      <select id="metric-select">
+        <option value="precision">Precision</option>
+        <option value="recall">Recall</option>
+        <option value="f1" selected>F1-Score</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label for="dataset-select">Dataset</label>
+      <select id="dataset-select">
+        <option value="bottom" selected>Bottom Player</option>
+        <option value="top">Top Player</option>
+        <option value="combined">Combined</option>
+      </select>
+    </div>
+  </div>
+  <div id="chart"></div>
+  <div class="tooltip" id="tooltip"></div>
+  <p class="note">Values from the URECA 2023/24 paper. Hover bars for exact values.</p>
+
+  <script>
+    // ─── Data ────────────────────────────────────────────────────────────────
+    // Source: Serving Insights URECA paper (2023/24).
+    // Grip classes: Forehand (FH), Backhand (BH), Overhead (OH)
+    const DATA = {
+      bottom: {
+        precision: { RNN:  [0.54, 0.49, 0.78], LSTM: [0.62, 0.58, 0.83], Conv2D: [0.74, 0.70, 0.90] },
+        recall:    { RNN:  [0.58, 0.52, 0.82], LSTM: [0.65, 0.60, 0.86], Conv2D: [0.76, 0.72, 0.92] },
+        f1:        { RNN:  [0.56, 0.50, 0.80], LSTM: [0.63, 0.59, 0.84], Conv2D: [0.75, 0.71, 0.91] },
+      },
+      top: {
+        precision: { RNN:  [0.47, 0.43, 0.72], LSTM: [0.55, 0.51, 0.77], Conv2D: [0.67, 0.63, 0.85] },
+        recall:    { RNN:  [0.50, 0.46, 0.75], LSTM: [0.58, 0.54, 0.80], Conv2D: [0.70, 0.66, 0.87] },
+        f1:        { RNN:  [0.48, 0.44, 0.73], LSTM: [0.56, 0.52, 0.78], Conv2D: [0.68, 0.64, 0.86] },
+      },
+      combined: {
+        precision: { RNN:  [0.45, 0.41, 0.70], LSTM: [0.53, 0.49, 0.74], Conv2D: [0.65, 0.61, 0.82] },
+        recall:    { RNN:  [0.48, 0.44, 0.73], LSTM: [0.56, 0.52, 0.77], Conv2D: [0.68, 0.64, 0.84] },
+        f1:        { RNN:  [0.46, 0.42, 0.71], LSTM: [0.54, 0.50, 0.75], Conv2D: [0.66, 0.62, 0.83] },
+      },
+    };
+
+    const CLASSES   = ["Forehand", "Backhand", "Overhead"];
+    const MODELS    = ["RNN", "LSTM", "Conv2D"];
+    const COLORS    = { RNN: "#6baed6", LSTM: "#2171b5", Conv2D: "#9a3334" };
+    const METRIC_LABELS = { precision: "Precision", recall: "Recall", f1: "F1-Score" };
+
+    // ─── Chart setup ─────────────────────────────────────────────────────────
+    const margin = { top: 20, right: 20, bottom: 40, left: 44 };
+
+    const container = document.getElementById("chart");
+    const tooltip   = document.getElementById("tooltip");
+
+    const svg = d3.select("#chart").append("svg");
+    const g   = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const xClass  = d3.scaleBand().padding(0.25);
+    const xModel  = d3.scaleBand().padding(0.06);
+    const yScale  = d3.scaleLinear().domain([0, 1]).nice();
+
+    const xAxisG = g.append("g").attr("class", "axis x-axis");
+    const yAxisG = g.append("g").attr("class", "axis y-axis");
+    const gridG  = g.append("g").attr("class", "grid");
+    const barsG  = g.append("g").attr("class", "bars");
+    const legendG = g.append("g").attr("class", "legend");
+
+    function getSize() {
+      const w = container.clientWidth || 500;
+      return { w, h: Math.max(180, Math.round(w * 0.42)) };
+    }
+
+    function buildLegend(width) {
+      legendG.selectAll("*").remove();
+      const itemW = 60, itemH = 14;
+      const totalW = MODELS.length * itemW;
+      const startX = Math.max(0, (width - totalW) / 2);
+      MODELS.forEach((m, i) => {
+        const lx = startX + i * itemW;
+        legendG.append("rect")
+          .attr("x", lx).attr("y", 0)
+          .attr("width", 10).attr("height", 10)
+          .attr("fill", COLORS[m]);
+        legendG.append("text")
+          .attr("x", lx + 13).attr("y", 9)
+          .attr("fill", "#444")
+          .text(m);
+      });
+    }
+
+    function update(metric, dataset) {
+      const { w, h } = getSize();
+      const innerW = w - margin.left - margin.right;
+      const innerH = h - margin.top - margin.bottom;
+
+      svg.attr("width", w).attr("height", h + 24);
+      legendG.attr("transform", `translate(0,${innerH + 28})`);
+
+      xClass.domain(CLASSES).range([0, innerW]);
+      xModel.domain(MODELS).range([0, xClass.bandwidth()]);
+      yScale.range([innerH, 0]);
+
+      xAxisG.attr("transform", `translate(0,${innerH})`)
+        .call(d3.axisBottom(xClass).tickSize(0))
+        .call(ax => ax.select(".domain").remove())
+        .call(ax => ax.selectAll("text").attr("dy", "1.2em"));
+
+      yAxisG.call(
+        d3.axisLeft(yScale).ticks(5).tickFormat(d3.format(".1f")).tickSize(0)
+      ).call(ax => ax.select(".domain").remove())
+       .call(ax => ax.selectAll("text").attr("dx", "-0.4em"));
+
+      gridG.call(
+        d3.axisLeft(yScale).ticks(5).tickSize(-innerW).tickFormat("")
+      ).call(ax => ax.select(".domain").remove());
+
+      // Build flat data
+      const flat = [];
+      CLASSES.forEach((cls, ci) => {
+        MODELS.forEach(m => {
+          flat.push({ cls, model: m, value: DATA[dataset][metric][m][ci] });
+        });
+      });
+
+      const bars = barsG.selectAll(".bar-group").data(CLASSES);
+      bars.enter().append("g").attr("class", "bar-group")
+        .merge(bars)
+        .attr("transform", d => `translate(${xClass(d)},0)`)
+        .each(function(cls) {
+          const grp = d3.select(this);
+          const clsIdx = CLASSES.indexOf(cls);
+          const rects = grp.selectAll("rect").data(MODELS);
+          rects.enter().append("rect").attr("class", "bar")
+            .merge(rects)
+            .attr("x", m => xModel(m))
+            .attr("width", xModel.bandwidth())
+            .attr("fill", m => COLORS[m])
+            .attr("rx", 2)
+            .transition().duration(300)
+            .attr("y", m => yScale(DATA[dataset][metric][m][clsIdx]))
+            .attr("height", m => innerH - yScale(DATA[dataset][metric][m][clsIdx]));
+
+          // tooltip events (on actual rects after enter+merge)
+          grp.selectAll("rect")
+            .on("mousemove", function(event, m) {
+              const v = DATA[dataset][metric][m][clsIdx];
+              tooltip.style.opacity = "1";
+              tooltip.style.left = (event.clientX + 12) + "px";
+              tooltip.style.top  = (event.clientY - 28) + "px";
+              tooltip.textContent = `${m} · ${cls}: ${v.toFixed(2)}`;
+            })
+            .on("mouseleave", () => { tooltip.style.opacity = "0"; });
+        });
+      bars.exit().remove();
+
+      buildLegend(innerW);
+    }
+
+    // ─── Init & event listeners ───────────────────────────────────────────────
+    const metricSel  = document.getElementById("metric-select");
+    const datasetSel = document.getElementById("dataset-select");
+
+    function redraw() { update(metricSel.value, datasetSel.value); }
+
+    metricSel.addEventListener("change",  redraw);
+    datasetSel.addEventListener("change", redraw);
+
+    redraw();
+    window.addEventListener("resize", redraw);
+  </script>
+</body>
+</html>

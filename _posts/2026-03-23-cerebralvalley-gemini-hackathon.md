@@ -198,6 +198,10 @@ Task 4: Wipe down the surfaces of the pantry counter cabinet
 Task 7: Push the cleaning cart to the oval communal table
 ```
 
+Explore how the DAG changes for different robot embodiments and tasks using the interactive visualisation below. Click any node to inspect the subtask details.
+
+<iframe src="{{'/'|relative_url}}assets/rpg-hackathon/task-dag.html" width="100%" height="430px" frameborder="0" scrolling="no" style="margin: 12px 0;"></iframe>
+
 ## 6. Validation and Grounding
 
 After the model generates a task DAG, two post-processing steps are performed before returning the plan to the user.
